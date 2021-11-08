@@ -13,3 +13,6 @@ destroy:
 	k3d cluster delete
 
 restart: destroy start
+
+token:
+	@echo export CONSUL_HTTP_TOKEN=$(shell kubectl -n amp get secret consul-bootstrap-acl-token -o json | jq -r '.data.token' | base64 -d)
