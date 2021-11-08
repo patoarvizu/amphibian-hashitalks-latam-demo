@@ -1,0 +1,13 @@
+apiVersion: terraform.patoarvizu.dev/v1
+kind: TerraformState
+metadata:
+  name: tls
+spec:
+  type: consul
+  consulConfig:
+    path: tls
+    address: consul:8500
+    scheme: http
+  target:
+    type: configmap
+    name: tls
