@@ -1,0 +1,32 @@
+repositories:
+- name: amphibian
+  url: https://patoarvizu.github.io/amphibian
+- name: hashicorp
+  url: https://helm.releases.hashicorp.com
+
+releases:
+- name: consul
+  namespace: amp
+  chart: hashicorp/consul
+  version: 0.24.1
+  wait: true
+  values:
+  - values/consul.yaml
+- name: consul-service
+  namespace: amp
+  chart: ./charts/consul-service
+  version: 0.0.0
+  wait: true
+- name: amphibian
+  namespace: amp
+  chart: amphibian/amphibian
+  version: 0.0.1
+  wait: true
+  values:
+  - values/amphibian.yaml
+
+helmDefaults:
+  kubeContext: k3d-k3s-default
+  args:
+  - --kubeconfig
+  - {{ requiredEnv "HOME" }}/.k3d/k3s-default-config

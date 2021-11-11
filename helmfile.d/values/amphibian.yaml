@@ -1,0 +1,6 @@
+authEnvVars:
+- name: CONSUL_HTTP_TOKEN
+  valueFrom:
+    secretKeyRef:
+      key: token
+      name: consul-bootstrap-acl-token
